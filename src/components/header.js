@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './navbar'
+import TopBar from './topBar'
 import logo from '../availitylogo.jpg';
 
 

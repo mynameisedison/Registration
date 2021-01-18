@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 class Welcome extends Component {
   render(){
@@ -13,12 +14,14 @@ class Welcome extends Component {
           direction="column"
           justify="space-between"
           alignItems="center"
-          spacing={3}
+          spacing={4}
           >
             <Grid item>
-              <Typography id="Typography" component="h3" variant="h4" >
-                Thanks for choosing Availity!
-              </Typography>
+              <Box  p="10">
+                <Typography id="Typography" component="h3" variant="h4">
+                  Thanks for choosing Availity!
+                </Typography>
+              </Box>
             </Grid>
             <Grid item>
               <Button
@@ -34,7 +37,6 @@ class Welcome extends Component {
               </Link>
             </Grid>
           </Grid>
-// style={{color: "#898d8e"}}
     );
   }
 }

@@ -71,16 +71,26 @@ class Overview extends Component {
               Everything look good?
             </Typography>
           </Box>
-          <Box mt={4}>
-            <Button
-              style={{backgroundColor: "#ff6f00"}}
-              onClick={this.props.handleSubmit}
-              type="submit"
-              variant="contained"
-              color="primary">
-                Submit
-            </Button>
-          </Box>
+              <Box>
+                <Button
+                  style={{backgroundColor: "#ff6f00"}}
+                  onClick={this.props.handleGoBack}
+                  type="goback"
+                  variant="contained"
+                  color="primary">
+                  Go back
+                </Button>
+              </Box>
+              <Box ml={4}>
+                <Button
+                  style={{backgroundColor: "#ff6f00"}}
+                  onClick={this.props.handleSubmit}
+                  type="submit"
+                  variant="contained"
+                  color="primary">
+                  Submit
+                </Button>
+              </Box>
         </div>
       </Container>
     );

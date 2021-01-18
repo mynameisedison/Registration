@@ -20,6 +20,7 @@ class App extends Component{
     this.handleNext = this.handleNext.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRestart = this.handleRestart.bind(this);
+    this.handleGoBack = this.handleGoBack.bind(this);
 
     this.state={
       fullName:"",
@@ -53,9 +54,9 @@ class App extends Component{
   }
   handleEmailConfirm(event){
     this.setState({confirmEmail: event.target.value})
-    if (this.state.email !== this.state.confirmEmail) {
-      console.log("ay that's bad!")
-    }
+    // if (this.state.email !== this.state.confirmEmail) {
+    //   console.log("ay that's bad!")
+    // }
   }
   handleRegisterClick(event){
     this.setState({welcome:null, signup: true});
@@ -68,6 +69,9 @@ class App extends Component{
   }
   handleRestart(event){
     this.setState({submitted:null, welcome:true});
+  }
+  handleGoBack(event){
+    this.setState({overview:null, signup:true});
   }
   render(){
 
@@ -86,7 +90,8 @@ class App extends Component{
                         email={this.state.email}
                         businessAddress={this.state.businessAddress}
                         phone={this.state.phone}
-                        handleSubmit={this.handleSubmit}/>
+                        handleSubmit={this.handleSubmit}
+                        handleGoBack={this.handleGoBack}/>
     }
     else if(this.state.submitted){
       currentPage = <Thanks handleRestart={this.handleRestart}/>
