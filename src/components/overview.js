@@ -66,31 +66,33 @@ class Overview extends Component {
               </Typography>
             </Grid>
           </Grid>
-          <Box mt={4}>
+          <Box mt={4} mb={5}>
             <Typography id="Typography" component="h1" variant="h5">
               Everything look good?
             </Typography>
           </Box>
-              <Box>
+            <Grid container spacing={24}>
+              <Grid item xs={6}>
                 <Button
                   style={{backgroundColor: "#ff6f00"}}
                   onClick={this.props.handleGoBack}
                   type="goback"
                   variant="contained"
                   color="primary">
-                  Go back
+                  No, Go back
                 </Button>
-              </Box>
-              <Box ml={4}>
+              </Grid>
+              <Grid item xs={6}>
                 <Button
                   style={{backgroundColor: "#ff6f00"}}
                   onClick={this.props.handleSubmit}
                   type="submit"
                   variant="contained"
                   color="primary">
-                  Submit
+                  Yes, Submit
                 </Button>
-              </Box>
+              </Grid>
+            </Grid>
         </div>
       </Container>
     );

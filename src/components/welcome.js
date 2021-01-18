@@ -32,7 +32,7 @@ class Welcome extends Component {
               </Button>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2" style={{color: "grey"}}>
+              <Link href="#" variant="body2" style={{color: "#2196f3"}}>
                 Already have an account? Sign in
               </Link>
             </Grid>
