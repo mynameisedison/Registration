@@ -5,10 +5,8 @@ class Navbar extends React.Component{
         return (
             <div>
               <ul id="nav">
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Home</a></li>
+                <li><a href="https://www.linkedin.com/in/edison-toole/">Contact</a></li>
+                <li><a href="https://www.Availity.com">Home</a></li>
               </ul>
             </div>
         );

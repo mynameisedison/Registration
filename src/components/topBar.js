@@ -8,23 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Box from '@material-ui/core/Box';
 
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  }));
-
   export default function TopBar() {
-    // const classes = useStyles();
-        return (
+      return (
           <Box mb={4}>
             <AppBar position="static" color="gray">
                 <Toolbar>

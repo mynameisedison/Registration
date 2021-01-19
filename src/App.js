@@ -15,6 +15,8 @@ class App extends Component{
     this.handleAddress = this.handleAddress.bind(this);
     this.handlePhone = this.handlePhone.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
+    this.handleEmailConfirm = this.handleEmail.bind(this);
+    this.emailsMatch = this.emailsMatch.bind(this);
 
     this.handleRegisterClick = this.handleRegisterClick.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -37,6 +39,9 @@ class App extends Component{
     }
   }
 
+  emailsMatch(){
+    return this.state.email === this.state.confirmEmail ? true : false;
+  }
   handleName(event){
     this.setState({fullName: event.target.value})
   }
@@ -54,9 +59,6 @@ class App extends Component{
   }
   handleEmailConfirm(event){
     this.setState({confirmEmail: event.target.value})
-    // if (this.state.email !== this.state.confirmEmail) {
-    //   console.log("ay that's bad!")
-    // }
   }
   handleRegisterClick(event){
     this.setState({welcome:null, signup: true});
@@ -69,6 +71,14 @@ class App extends Component{
   }
   handleRestart(event){
     this.setState({submitted:null, welcome:true});
+    this.setState({
+      fullName:"",
+      npiNumber:"",
+      businessAddress:"",
+      phone:"",
+      email:"",
+      confirmEmail:"",
+    })
   }
   handleGoBack(event){
     this.setState({overview:null, signup:true});
@@ -80,9 +90,11 @@ class App extends Component{
       currentPage = <SignUp handleNext={this.handleNext}
                       handleName = {this.handleName}
                       handleEmail = {this.handleEmail}
+                      handleEmailConfirm={this.handleEmailConfirm}
                       handleNpi = {this.handleNpi}
                       handleAddress = {this.handleAddress}
-                      handlePhone = {this.handlePhone}/>
+                      handlePhone = {this.handlePhone}
+                      emailsMatch = {this.emailsMatch}/>
     }
     else if(this.state.overview){
       currentPage = <Overview name={this.state.fullName}
