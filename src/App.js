@@ -43,8 +43,9 @@ class App extends Component{
   }
 
   emailsMatch(){
-    this.setState({emailsMatch: this.state.email === this.state.emailConfirm ? true : false});
-    return this.state.emailsMatch;
+    let emailsMatch = this.state.email === this.state.emailConfirm ? true : false;
+    this.setState({emailsMatch: emailsMatch});
+    return emailsMatch;
   }
   handleName(event){
     this.setState({fullName: event.target.value})
@@ -70,18 +71,19 @@ class App extends Component{
   handleEmailConfirm(event){
     this.setState({emailConfirm: event.target.value}, () => {this.emailsMatch()});
   }
-  handleRegisterClick(event){
+  handleRegisterClick(){
     this.setState({welcome:null, signup: true});
   }
   handleNext(event) {
+    event.preventDefault();
     if (this.state.fullName && this.state.email && this.state.npiNumber && this.state.businessAddress && this.state.phone && this.state.emailConfirm && this.state.emailsMatch) {
       this.setState({signup:null, overview:true});
     }
   }
-  handleSubmit(event){
+  handleSubmit(){
     this.setState({overview:null, submitted:true});
   }
-  handleRestart(event){
+  handleRestart(){
     this.setState({
       submitted:null, 
       welcome:true,
@@ -94,7 +96,7 @@ class App extends Component{
       emailConfirm:"",
     });
   }
-  handleGoBack(event){
+  handleGoBack(){
     this.setState({overview:null, signup:true});
   }
   goHome(){
