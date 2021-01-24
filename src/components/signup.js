@@ -9,6 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 export default function SignUp(props) {
+  function hello() {
+    
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -22,6 +25,7 @@ export default function SignUp(props) {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
+              value={props.state.fullName}
               onChange={e=>props.handleName(e)}
               autoComplete="name"
               name="name"
@@ -35,6 +39,7 @@ export default function SignUp(props) {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              value={props.state.email}
               onChange={e=>props.handleEmail(e)}
               variant="outlined"
               required
@@ -47,7 +52,9 @@ export default function SignUp(props) {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              value={props.state.emailConfirm}
               onChange={e=>props.handleEmailConfirm(e)}
+              helperText={!props.state.emailsMatch ? "Emails don't match!" : ""}
               variant="outlined"
               required
               fullWidth
@@ -55,10 +62,13 @@ export default function SignUp(props) {
               label="Confirm Email Address"
               name="email"
               autoComplete="email"
+              type="email"
+              error={!props.state.emailsMatch}
             />
             </Grid>
             <Grid item xs={12}>
               <TextField
+              value={props.state.npiNumber}
               onChange={e=>props.handleNpi(e)}
               autoComplete="name"
               name="name"
@@ -72,6 +82,7 @@ export default function SignUp(props) {
 
               <Grid item xs={12}>
                 <TextField
+                value={props.state.businessAddress}
                 onChange={e=>props.handleAddress(e)}
                 variant="outlined"
                 required
@@ -84,6 +95,7 @@ export default function SignUp(props) {
               </Grid>
               <Grid item xs={12}>
               <TextField
+                value={props.state.phone}
                 onChange={e=>props.handlePhone(e)}
                 variant="outlined"
                 required
@@ -92,6 +104,7 @@ export default function SignUp(props) {
                 label="Phone Number"
                 name="phone"
                 autoComplete="phone"
+                inputProps={{maxLength: 10}}
               />
               </Grid>
           </Grid>

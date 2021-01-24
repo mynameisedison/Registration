@@ -15,7 +15,7 @@ class App extends Component{
     this.handleAddress = this.handleAddress.bind(this);
     this.handlePhone = this.handlePhone.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
-    this.handleEmailConfirm = this.handleEmail.bind(this);
+    this.handleEmailConfirm = this.handleEmailConfirm.bind(this);
     this.emailsMatch = this.emailsMatch.bind(this);
 
     this.handleRegisterClick = this.handleRegisterClick.bind(this);
@@ -30,41 +30,52 @@ class App extends Component{
       businessAddress:"",
       phone:"",
       email:"",
-      confirmEmail:"",
+      emailConfirm:"",
 
       welcome: true,
       signup: false,
       overview: false,
       submitted: false,
+
+      emailsMatch: true,
     }
   }
 
   emailsMatch(){
-    return this.state.email === this.state.confirmEmail ? true : false;
+    this.setState({emailsMatch: this.state.email === this.state.emailConfirm ? true : false});
+    return this.state.emailsMatch;
   }
   handleName(event){
     this.setState({fullName: event.target.value})
   }
   handleNpi(event){
-    this.setState({npiNumber: event.target.value})
+    const regex = new RegExp("^[0-9]*$");
+    if(regex.test(event.target.value)){
+      this.setState({npiNumber: event.target.value})
+    }
   }
   handleAddress(event){
     this.setState({businessAddress: event.target.value})
   }
   handlePhone(event){
-    this.setState({phone: event.target.value})
+    const regex = new RegExp("^[0-9]*$");
+    if(regex.test(event.target.value)){
+      this.setState({phone: event.target.value})
+    }
   }
   handleEmail(event){
-    this.setState({email: event.target.value})
+    this.setState({email: event.target.value}, () => {this.emailsMatch()});
   }
   handleEmailConfirm(event){
-    this.setState({confirmEmail: event.target.value})
+    this.setState({emailConfirm: event.target.value}, () => {this.emailsMatch()});
   }
   handleRegisterClick(event){
     this.setState({welcome:null, signup: true});
   }
   handleNext(event) {
-    this.setState({signup:null, overview:true});
+    if (this.state.fullName && this.state.email && this.state.npiNumber && this.state.businessAddress && this.state.phone && this.state.emailConfirm) {
+      this.setState({signup:null, overview:true});
+    }
   }
   handleSubmit(event){
     this.setState({overview:null, submitted:true});
@@ -77,14 +88,13 @@ class App extends Component{
       businessAddress:"",
       phone:"",
       email:"",
-      confirmEmail:"",
+      emailConfirm:"",
     })
   }
   handleGoBack(event){
     this.setState({overview:null, signup:true});
   }
   render(){
-
     let currentPage
     if(this.state.signup){
       currentPage = <SignUp handleNext={this.handleNext}
@@ -94,7 +104,8 @@ class App extends Component{
                       handleNpi = {this.handleNpi}
                       handleAddress = {this.handleAddress}
                       handlePhone = {this.handlePhone}
-                      emailsMatch = {this.emailsMatch}/>
+                      emailsMatch = {this.emailsMatch}
+                      state = {this.state}/>
     }
     else if(this.state.overview){
       currentPage = <Overview name={this.state.fullName}

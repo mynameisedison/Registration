@@ -23,5 +23,5 @@ import Box from '@material-ui/core/Box';
                 </Toolbar>
             </AppBar>
           </Box>
-            );
+        );
 }

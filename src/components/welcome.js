@@ -31,7 +31,7 @@ export default function Welcome(props) {
             </Button>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2" style={{color: "#2196f3"}}>
+            <Link href="https://apps.availity.com/availity/web/public.elegant.login" variant="body2" style={{color: "#2196f3"}}>
               Already have an account? Sign in
             </Link>
           </Grid>
