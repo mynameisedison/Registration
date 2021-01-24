@@ -23,6 +23,7 @@ class App extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRestart = this.handleRestart.bind(this);
     this.handleGoBack = this.handleGoBack.bind(this);
+    this.goHome = this.goHome.bind(this);
 
     this.state={
       fullName:"",
@@ -73,7 +74,7 @@ class App extends Component{
     this.setState({welcome:null, signup: true});
   }
   handleNext(event) {
-    if (this.state.fullName && this.state.email && this.state.npiNumber && this.state.businessAddress && this.state.phone && this.state.emailConfirm) {
+    if (this.state.fullName && this.state.email && this.state.npiNumber && this.state.businessAddress && this.state.phone && this.state.emailConfirm && this.state.emailsMatch) {
       this.setState({signup:null, overview:true});
     }
   }
@@ -81,23 +82,34 @@ class App extends Component{
     this.setState({overview:null, submitted:true});
   }
   handleRestart(event){
-    this.setState({submitted:null, welcome:true});
     this.setState({
+      submitted:null, 
+      welcome:true,
+
       fullName:"",
       npiNumber:"",
       businessAddress:"",
       phone:"",
       email:"",
       emailConfirm:"",
-    })
+    });
   }
   handleGoBack(event){
     this.setState({overview:null, signup:true});
   }
+  goHome(){
+    this.setState({
+      signup: false,
+      overview: false,
+      submitted: false,
+      welcome: true,
+    })
+    console.log(this.state);
+  }
   render(){
     let currentPage
     if(this.state.signup){
-      currentPage = <SignUp handleNext={this.handleNext}
+      currentPage = <SignUp handleNext = {this.handleNext}
                       handleName = {this.handleName}
                       handleEmail = {this.handleEmail}
                       handleEmailConfirm={this.handleEmailConfirm}
@@ -108,13 +120,13 @@ class App extends Component{
                       state = {this.state}/>
     }
     else if(this.state.overview){
-      currentPage = <Overview name={this.state.fullName}
-                        npiNumber={this.state.npiNumber}
-                        email={this.state.email}
-                        businessAddress={this.state.businessAddress}
-                        phone={this.state.phone}
-                        handleSubmit={this.handleSubmit}
-                        handleGoBack={this.handleGoBack}/>
+      currentPage = <Overview name = {this.state.fullName}
+                        npiNumber = {this.state.npiNumber}
+                        email = {this.state.email}
+                        businessAddress = {this.state.businessAddress}
+                        phone = {this.state.phone}
+                        handleSubmit = {this.handleSubmit}
+                        handleGoBack = {this.handleGoBack}/>
     }
     else if(this.state.submitted){
       currentPage = <Thanks handleRestart={this.handleRestart}/>
@@ -123,7 +135,7 @@ class App extends Component{
 
     return (
       <div className="App">
-          <Header/>
+          <Header goHome = {this.goHome}/>
         {currentPage}
       </div>
     );
